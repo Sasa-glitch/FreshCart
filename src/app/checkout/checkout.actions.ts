@@ -2,12 +2,13 @@
 
 import { CardOrderResType, CashOrderDetails, CashOrderResType, ShippingAddress } from "@/api/types";
 import { getDecodedToken } from "../utiles";
+import { BASE_URL } from "@/lib/config";
 
 export async function payWithCash(id: string, orderDetails:CashOrderDetails): Promise<CashOrderResType|undefined|Error> {
     const userToken = await getDecodedToken();
     if (userToken) {
         try {
-            const res = await fetch(`${process.env.BASE_URL}v2/orders/${id}`, {
+            const res = await fetch(`${BASE_URL}v2/orders/${id}`, {
                 method: "post",
                 headers: {
                     token: userToken,
@@ -30,7 +31,7 @@ export async function payWithCard(id: string, orderDetails:{shippingAddress: Shi
     const userToken = await getDecodedToken();
     if (userToken) {
         try {
-            const res = await fetch(`${process.env.BASE_URL}v1/orders/checkout-session/${id}?url=${process.env.NEXTAUTH_URL_INTERNAL}`, {
+            const res = await fetch(`${BASE_URL}v1/orders/checkout-session/${id}?url=${process.env.NEXTAUTH_URL_INTERNAL}`, {
                 method: "post",
                 headers: {
                     token: userToken,

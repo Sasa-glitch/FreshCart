@@ -2,6 +2,7 @@
 
 import { getDecodedToken } from "../utiles";
 import { CartData, CartResponse } from "@/api/types";
+import { BASE_URL } from "@/lib/config";
 
 export async function addProductToCart(id: string) {
     // console.log("add to cart function fire")
@@ -9,7 +10,7 @@ export async function addProductToCart(id: string) {
     // console.log("This is the token", userToken)
     if (userToken) {
         try {
-            const res = await fetch(`${process.env.BASE_URL}v2/cart`, {
+            const res = await fetch(`${BASE_URL}v2/cart`, {
                 method: "Post",
                 body: JSON.stringify({ productId: id }),
                 headers: {
@@ -38,7 +39,7 @@ export async function getUsersCart(): Promise<CartData | Error> {
     const userToken = await getDecodedToken();
     if (userToken) {
         try {
-            const res = await fetch(`${process.env.BASE_URL}v2/cart`, {
+            const res = await fetch(`${BASE_URL}v2/cart`, {
                 method: "get",
                 headers: {
                     token: userToken,
@@ -66,7 +67,7 @@ export async function updateCartItemNumber(itemId: string, newNumber: string): P
     if (userToken) {
         try {
             const res = await fetch(
-                `${process.env.BASE_URL}v2/cart/${itemId}`,
+                `${BASE_URL}v2/cart/${itemId}`,
                 {
                     method: "put",
                     headers: {
@@ -97,7 +98,7 @@ export async function deleteItemFromCart(itemId: string): Promise<CartData | Err
     if (userToken) {
         try {
             const res = await fetch(
-                `${process.env.BASE_URL}v2/cart/${itemId}`,
+                `${BASE_URL}v2/cart/${itemId}`,
                 {
                     method: "delete",
                     headers: {
@@ -126,7 +127,7 @@ export async function clearCart(): Promise<CartData | Error> {
     if (userToken) {
         try {
             const res = await fetch(
-                `${process.env.BASE_URL}v2/cart/`,
+                `${BASE_URL}v2/cart/`,
                 {
                     method: "delete",
                     headers: {

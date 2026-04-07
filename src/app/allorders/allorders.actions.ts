@@ -1,14 +1,17 @@
 import { getDecodedToken } from "../utiles";
 import { jwtDecode } from "jwt-decode";
 import { CashOrderData } from "@/api/types"; // using the existing type
+
+const BASE_URL = process.env.BASE_URL ?? "https://ecommerce.routemisr.com/api/";
+
 export async function getUserOrders(): Promise<CashOrderData[] | Error> {
     const userToken = await getDecodedToken();
     if (userToken) {
         try {
-            // Extact id using jwtDecode
+            // Extract id using jwtDecode
             const { id } = jwtDecode<{ id: string }>(userToken);
 
-            const res = await fetch(`${process.env.BASE_URL}v1/orders/user/${id}`, {
+            const res = await fetch(`${BASE_URL}v1/orders/user/${id}`, {
                 method: "get",
                 headers: {
                     token: userToken,

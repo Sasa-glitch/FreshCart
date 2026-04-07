@@ -1,11 +1,12 @@
 "use server"
 
 import { RegisterDataType } from "./zodSchema";
+import { BASE_URL } from "@/lib/config";
 
 export async function signUpRequest(data: RegisterDataType) {
     try {
             // sending the request
-            const res =  await fetch(`${process.env.BASE_URL}v1/auth/signup`, {
+            const res =  await fetch(`${BASE_URL}v1/auth/signup`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

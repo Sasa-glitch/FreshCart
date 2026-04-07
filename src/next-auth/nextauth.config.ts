@@ -1,6 +1,7 @@
 import { NextAuthOptions, User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import {jwtDecode} from "jwt-decode"
+import {jwtDecode} from "jwt-decode";
+import { BASE_URL } from "@/lib/config";
 
 interface SignInReplyType {
     message: string;
@@ -31,7 +32,7 @@ export const authConfig: NextAuthOptions = {
             authorize: async function (Credentials) {
                 try {
                     const res = await fetch(
-                        `${process.env.BASE_URL}v1/auth/signin`,
+                        `${BASE_URL}v1/auth/signin`,
                         {
                             method: "POST",
                             body: JSON.stringify(Credentials),

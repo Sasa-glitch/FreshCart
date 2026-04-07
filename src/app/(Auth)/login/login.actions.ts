@@ -2,11 +2,12 @@
 
 import { cookies } from "next/headers";
 import { LoginDataType } from "./zodSchema";
+import { BASE_URL } from "@/lib/config";
 
 export async function signUpRequest(data: LoginDataType) {
     try {
             // sending the request
-            const res =  await fetch(`${process.env.BASE_URL}v1/auth/signin`, {
+            const res =  await fetch(`${BASE_URL}v1/auth/signin`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

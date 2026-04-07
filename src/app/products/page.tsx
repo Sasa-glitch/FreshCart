@@ -18,12 +18,13 @@ export interface apiResType {
 }
 
 export default async function page({searchParams}: {searchParams: Promise<{brand: string, category: string}>}) {
+    const BASE_URL = process.env.BASE_URL ?? "https://ecommerce.routemisr.com/api/";
     const theSearchParams = await searchParams
     const brandId = theSearchParams.brand;
     const categoryId = theSearchParams.category;
     const getBrand = async () => {
         try {
-            const res = await fetch(`${process.env.BASE_URL}v1/brands/${brandId}`);
+            const res = await fetch(`${BASE_URL}v1/brands/${brandId}`);
             const data: apiResType  = await res.json();
             return data.data;
         } catch (e) {
@@ -32,7 +33,7 @@ export default async function page({searchParams}: {searchParams: Promise<{brand
     }
     const getCategory = async () => {
         try {
-            const res = await fetch(`${process.env.BASE_URL}v1/categories/${categoryId}`);
+            const res = await fetch(`${BASE_URL}v1/categories/${categoryId}`);
             const data: apiResType  = await res.json();
             return data.data;
         } catch (e) {

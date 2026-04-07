@@ -5,6 +5,7 @@ import { ChevronRight, Home, Star, StarHalf } from "lucide-react";
 import ProductImageGallery from "@/components/product-details/ProductImageGallery";
 import ProductQuantityActions from "@/components/product-details/ProductQuantityActions";
 import ProductTabs from "@/components/product-details/ProductTabs";
+import { BASE_URL } from "@/lib/config";
 
 export default async function page({
     params,
@@ -18,7 +19,7 @@ export default async function page({
     ): Promise<SingleProductType | undefined> {
         try {
             const res = await fetch(
-                `${process.env.BASE_URL}v1/products/${id}`,
+                `${BASE_URL}v1/products/${id}`,
             );
             if (!res.ok) {
                 throw new Error("Unexpected error happened");

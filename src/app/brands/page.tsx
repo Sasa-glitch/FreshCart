@@ -7,8 +7,9 @@ import BrandCard from "./_components/BrandCard";
 
 export default async function BrandsPage() {
     async function getBrands(): Promise<Brand[] | undefined> {
+        const BASE_URL = process.env.BASE_URL ?? "https://ecommerce.routemisr.com/api/";
         try {
-            const res = await fetch(`${process.env.BASE_URL}v1/brands`, {
+            const res = await fetch(`${BASE_URL}v1/brands`, {
                 cache: "force-cache", 
             });
             if (!res.ok) {
