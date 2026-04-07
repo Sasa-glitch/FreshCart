@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faTags, faXmark, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-export default async function ProductsGrid({ brand, category }: { brand: Brand | undefined, category: Category | undefined }) {
+export default async function ProductsGrid({ brand, category }: { brand?: Brand | undefined, category?: Category | undefined }) {
     const products: ProductType[] | undefined = await callProducts();
     let productToShow = products;
     
