@@ -30,7 +30,7 @@ export async function payWithCard(id: string, orderDetails:{shippingAddress: Shi
     const userToken = await getDecodedToken();
     if (userToken) {
         try {
-            const res = await fetch(`${process.env.BASE_URL}v1/orders/checkout-session/${id}?url=http://localhost:3000`, {
+            const res = await fetch(`${process.env.BASE_URL}v1/orders/checkout-session/${id}?url=${process.env.NEXTAUTH_URL_INTERNAL}`, {
                 method: "post",
                 headers: {
                     token: userToken,
